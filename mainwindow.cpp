@@ -4,6 +4,9 @@
 #include <QPushButton>
 #include <QFileDialog>
 #include <QTextStream>
+#include <QLineEdit>
+#include <QDialog>
+#include <QPushButton>
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -15,6 +18,15 @@ MainWindow::MainWindow(QWidget *parent)
     curFile = tr("未命名.txt");
     // 初始化窗口标题为文件名
     setWindowTitle(curFile);
+
+    findDlg = new QDialog(this);
+    findDlg->setWindowTitle(tr("查找"));
+    findLineEdit = new QLineEdit(findDlg);
+    QPushButton *btn= new QPushButton(tr("查找下一个"), findDlg);
+    QVBoxLayout *layout= new QVBoxLayout(findDlg);
+    layout->addWidget(findLineEdit);
+    layout->addWidget(btn);
+    connect(btn, SIGNAL(clicked()), this, SLOT(showFindText()));
 }
 
 MainWindow::~MainWindow()
@@ -192,7 +204,16 @@ void MainWindow::on_action_Paste_triggered()
 
 void MainWindow::on_action_Find_triggered()
 {
+    findDlg->show();
+}
 
+void MainWindow::showFindText()
+{
+    QString str = findLineEdit->text();
+    if (!ui->textEdit->find(str, QTextDocument::FindBackward)) {
+        QMessageBox::warning(this, tr("查找"),
+                             tr("找不到%1").arg(str));
+    }
 }
 
 void MainWindow::closeEvent(QCloseEvent *event)
