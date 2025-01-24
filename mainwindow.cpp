@@ -7,7 +7,9 @@
 #include <QLineEdit>
 #include <QDialog>
 #include <QPushButton>
+
 #include <QLabel>
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -28,6 +30,7 @@ MainWindow::MainWindow(QWidget *parent)
     layout->addWidget(findLineEdit);
     layout->addWidget(btn);
     connect(btn, SIGNAL(clicked()), this, SLOT(showFindText()));
+
     //ui->statusbar->showMessage(tr("欢迎访问Qt爱好者社区！"), 2000);
     statusLabel = new QLabel;
     statusLabel->setMinimumSize(150, 20); // 设置标签最小大小
@@ -43,6 +46,7 @@ MainWindow::MainWindow(QWidget *parent)
     permanent->setTextFormat(Qt::RichText);
     permanent->setOpenExternalLinks(true);
     ui->statusbar->addPermanentWidget(permanent);
+
 }
 
 MainWindow::~MainWindow()
@@ -222,6 +226,7 @@ void MainWindow::on_action_Find_triggered()
 {
     findDlg->show();
 }
+
 
 void MainWindow::showFindText()
 {
