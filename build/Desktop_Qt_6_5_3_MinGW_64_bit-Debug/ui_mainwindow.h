@@ -197,6 +197,9 @@ public:
         action_Help->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+H", nullptr));
 #endif // QT_CONFIG(shortcut)
         action_New_2->setText(QCoreApplication::translate("MainWindow", "\346\226\260\345\273\272(&N)", nullptr));
+#if QT_CONFIG(statustip)
+        action_New_2->setStatusTip(QCoreApplication::translate("MainWindow", "\346\226\260\345\273\272\346\226\207\344\273\266", nullptr));
+#endif // QT_CONFIG(statustip)
 #if QT_CONFIG(shortcut)
         action_New_2->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+N", nullptr));
 #endif // QT_CONFIG(shortcut)

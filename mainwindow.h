@@ -6,6 +6,7 @@
 
 class QLineEdit;
 class QDialog;
+class QLabel;
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -60,6 +61,7 @@ private:
     QString curFile;
     QLineEdit *findLineEdit;
     QDialog *findDlg;
+    QLabel *statusLabel;
 protected:
     void closeEvent(QCloseEvent *event); // 关闭事件
 };

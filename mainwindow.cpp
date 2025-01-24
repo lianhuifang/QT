@@ -7,6 +7,7 @@
 #include <QLineEdit>
 #include <QDialog>
 #include <QPushButton>
+#include <QLabel>
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -27,6 +28,21 @@ MainWindow::MainWindow(QWidget *parent)
     layout->addWidget(findLineEdit);
     layout->addWidget(btn);
     connect(btn, SIGNAL(clicked()), this, SLOT(showFindText()));
+    //ui->statusbar->showMessage(tr("欢迎访问Qt爱好者社区！"), 2000);
+    statusLabel = new QLabel;
+    statusLabel->setMinimumSize(150, 20); // 设置标签最小大小
+    statusLabel->setFrameShape(QFrame::WinPanel); // 设置标签形状
+    statusLabel->setFrameShadow(QFrame::Sunken); // 设置标签阴影
+    ui->statusbar->addWidget(statusLabel);
+    statusLabel->setText(tr("欢迎访问Qt爱好者社区！"));
+
+    QLabel *permanent = new QLabel(this);
+    permanent->setFrameStyle(QFrame::Box | QFrame::Sunken);
+    permanent->setText(
+        tr("<a href=\"http://www.yafeilinux.com\">yafeilinux.com</a>"));
+    permanent->setTextFormat(Qt::RichText);
+    permanent->setOpenExternalLinks(true);
+    ui->statusbar->addPermanentWidget(permanent);
 }
 
 MainWindow::~MainWindow()
